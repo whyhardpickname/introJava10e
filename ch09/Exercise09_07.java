@@ -21,7 +21,7 @@ class Account
 {
 	private int id = 0;
 	private double balance = 0.0;
-	private double annualInterestRate = 0;
+	private static double annualInterestRate = 0;
 	private Date dateCreated = new Date();
 	
 	public Account()
