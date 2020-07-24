@@ -7,10 +7,11 @@ public class Exercise09_11
 		double[] coefficients = new double[6];
 		
 		System.out.println("enter a,b,c,d,e and f");
-		for (double value: coefficients)
+		for (int i = 0; i < coefficients.length; i++)
 		{
-			value = in.nextDouble();
+			coefficients[i] = in.nextDouble();
 		}
+		
 		LinearEquation twoBytwo;
 		twoBytwo = new LinearEquation(coefficients[0], coefficients[1], 
 									  coefficients[2], coefficients[3],
@@ -79,7 +80,7 @@ class LinearEquation
 	
 	public boolean isSovable()
 	{
-		if (a * d - b * c != 0)
+		if ((a * d - b * c) != 0)
 			return true;
 		else
 			return false;
