@@ -1,3 +1,23 @@
+public class Exercise09_09
+{
+	public static void main(String[] args)
+	{
+		RegularPolygon[] polygon = new RegularPolygon[3];
+		polygon[0] = new RegularPolygon();
+		polygon[1] = new RegularPolygon(6, 4);
+		polygon[2] = new RegularPolygon(10, 4, 5.6, 7.8);
+		
+		int i  = 0;
+		for (RegularPolygon p: polygon)
+		{
+			System.out.println("polygon" + (i++)
+				+ " perimeter=" + p.getPerimeter()
+				+ " area=" + p.getArea());
+		}
+	}
+}
+
+
 class RegularPolygon
 {
 	private int n = 3;
@@ -69,6 +89,6 @@ class RegularPolygon
 	
 	public double getArea()
 	{
-		return	n * side * side / 4 / Math.tan(Math.PI / n);
+		return	n * side * side / (4 * Math.tan(Math.PI / n));
 	}
 }
