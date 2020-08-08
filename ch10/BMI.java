@@ -15,10 +15,12 @@ public class BMI
 	
 	public BMI(String name, double height, double weight)
 	{
-		this.name = name;
-		this.age = 20;
-		this.height = height;
-		this.weight = weight;
+		this(name, 20, height, weight);
+	}
+	
+	public BMI(String name, int age, double weight, double feet, double inches)
+	{
+		this(name, age, 0.3048 * feet + 0.0254 * inches, weight);
 	}
 	
 	public double getBMI()
