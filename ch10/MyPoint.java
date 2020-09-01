@@ -5,8 +5,7 @@ public class MyPoint
 	
 	public MyPoint()
 	{
-		this.x = 0;
-		this.y = 0;
+		this(0, 0);
 	}
 	
 	public MyPoint(double x, double y)

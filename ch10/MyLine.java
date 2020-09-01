@@ -5,6 +5,12 @@ public class Myline
 	private double b;
 	private double c;
 	
+	public Myline(double a, double b, double c)
+	{
+		this.a = a;
+		this.b = b;
+		this.c = c;
+	}
 	public Myline(MyPoint p1, MyPoint p2)
 	{
 		if (p1.getX() - p2.getX() != 0)
@@ -13,14 +19,21 @@ public class Myline
 			b = 1;
 			c = p1.getY + a * p1.getX();
 		}
-		
-		if (p1.getY() == p1.getY())
+		else 
 		{
-			a = 0;
-			b = 0;
-			c = 0;
+			if (p1.getY() == p1.getY())
+			{
+				a = 0;
+				b = 0;
+				c = 0;
+			}
+			else
+			{
+				a = 1;
+				b = 0;
+				c = p1.getX();
+			}
 		}
-		a = p1.getX();
 	}
 	
 	public MyLine(double x1, double y1, double x2, double y2)
@@ -41,5 +54,16 @@ public class Myline
 	public double getC()
 	{
 		return c;
+	}
+	
+	public boolean isCrosses(MyLine otherLine)
+	{
+		LinearEquation equation = new LinearEquation(a, b, c, otherLine,getA(), otherLine.getB(), otherLine.getC());
+		return equation.isSovlable();
+	}
+	
+	public boolean isOverlaps(MyLine otherLine)
+	{
+		return a == otherLine.getA() && b == otherLine.getB() && c = otherLine.getC();
 	}
 }
