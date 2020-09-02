@@ -9,7 +9,7 @@ public class Triangle2D
 		this(new MyPoint(0, 0), new MyPoint(1, 1), new MyPoint(2, 5));
 	}
 	
-	public MyTriangel2D(MyPoint p1, MyPoint p2,MyPoint p3,)
+	public MyTriangle2D(MyPoint p1, MyPoint p2,MyPoint p3,)
 	{
 		this.p1 = p1;
 		this.p2 = p2;
@@ -48,7 +48,7 @@ public class Triangle2D
 	
 	public double getArea()
 	{
-		double p = 0.5 * this.getPerimeter();
+		double p = 0.5 * getPerimeter();
 		return Math.sqrt(p * (p - p1.distance(p2)) * (p - p1.distance(p3)) * (p - p2.distance(p3)));
 	}
 	
@@ -59,6 +59,8 @@ public class Triangle2D
 	
 	public boolean contains(MyPoint p)
 	{
-		
+		Vector vector21 = Vector(p1, p2);
+		Vector vector31 = Vector(p1, p3);
+		//todo
 	}
 }
