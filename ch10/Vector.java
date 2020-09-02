@@ -3,7 +3,7 @@ public class Vector
 	double x;
 	double y;
 	
-	public vector(MyPoint start, MyPoint end)
+	public Vector(MyPoint start, MyPoint end)
 	{
 		this(end.getX() - start.getX(), end.getY() - start.getY());
 	}
@@ -14,14 +14,14 @@ public class Vector
 		this.y = y;
 	}
 	
-	public double dotMultiply(double x, double y)
+	public double dot(double x, double y)
 	{
 		return this.x * x + this.y * y;
 	}
 	
-	public double dotMultiply(Vector otherVector)
+	public double dot(Vector otherVector)
 	{
-		return this(otherVector.getX(), otherVector.getY());
+		return dot(otherVector.getX(), otherVector.getY());
 	}
 	
 	public double getX()
