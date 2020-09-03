@@ -52,9 +52,10 @@ public class LinearEquation
 	public boolean isSolvable()
 	{
 		if ((a * d - b * c) != 0)
+		{
 			return true;
-		else
-			return false;
+		}
+		return false;
 	}
 	
 	public Double getX()

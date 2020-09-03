@@ -90,18 +90,21 @@ public class Triangle2D
 				&& contains(t.getP3());
 	}
 	
+	public boolean crosses(MyPoint p1, MyPoint p2)
+	{
+		return MyLine.isCrosses(p1, p2, this.p1, this.p2)
+			|| MyLine.isCrosses(p1, p2, this.p1, this.p3)
+			|| MyLine.isCrosses(p1, p2, this.p2, this.p3);
+	}
+	
 	public boolean overlaps(Triangle2D t)
 	{
 		if (this.contains(t) || t.contains(this))
 		{
 			return false;
 		}
-		
-		if (!t.contains(p1) && !t.contains(p2)
-			&& !t.contains(p2))
-			{
-				return false;
-			}
-		return true;
+		return crosses(t.getP1(), t.getP2())
+			|| crosses(t.getP1(), t.getP3())
+			|| crosses(t.getP2(), t.getP3());
 	}
 }
