@@ -61,9 +61,6 @@ public class Triangle2D
 	{
 		return contains(new MyPoint(x, y));
 	}
-	{
-		
-	}
 	
 	public boolean contains(MyPoint p)
 	{
@@ -83,6 +80,28 @@ public class Triangle2D
 		}
 		return u + v <= 1;
 	}
+	public boolean contains(MyPoint p1, MyPoint p2)
+	{
+		if (contains(p1) || contains(p2))
+		{
+			return true;
+		}
+		MyLine line = new MyLine(p1, p2);
+		MyLine[] lines = new MyLine[3];
+		lines[0] = new MyLine(this.p1, this.p2);
+		lines[1] = new MyLine(this.p1, this.p3);
+		lines[2] = new MyLine(this.p3, this.p3);
+		for (int i = 0; i < lines; i++)
+		{
+			LinearEquation e = new LinearEquation(lines.getA(), line.getB(), line.getC(), lines[i].getA(), lines[i].getB(), line[i].getC());
+			MyPoint p = new MyPoint(e.getX(), e.getY());
+			if (contains(p))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public boolean contains(Triangle2D t)
 	{
@@ -99,12 +118,8 @@ public class Triangle2D
 	
 	public boolean overlaps(Triangle2D t)
 	{
-		if (this.contains(t) || t.contains(this))
-		{
-			return false;
-		}
-		return crosses(t.getP1(), t.getP2())
-			|| crosses(t.getP1(), t.getP3())
-			|| crosses(t.getP2(), t.getP3());
+		return contains(t.getP1(), t.getP2())
+			|| contains(t.getP1(), t.getP3())
+			|| contains(t.getP2(), t.getP3());
 	}
 }
