@@ -21,17 +21,17 @@ public class MyLine
 		}
 		else 
 		{
-			if (p1.getY() == p1.getY())
-			{
-				a = 0;
-				b = 0;
-				c = 0;
-			}
-			else
+			if (p1.getY() != p2.getY())
 			{
 				a = 1;
 				b = 0;
 				c = p1.getX();
+			}
+			else
+			{
+				a = 0;
+				b = 0;
+				c = 0;
 			}
 		}
 	}
@@ -56,40 +56,21 @@ public class MyLine
 		return c;
 	}
 	
-	public static boolean isCrosses(MyPoint p1, MyPoint p2, MyPoint p3, MyPoint p4)
+	public static void main(String[] args)
 	{
-		MyLine L12 = new MyLine(p1, p2);
-		MyLine L34 = new MyLine(p3, p4);
-		if (L12.isOverlaps(L34))
-		{
-			return true;
-		}
+		MyPoint p1 = new MyPoint(0, 0);
+		MyPoint p2 = new MyPoint(0, 1);
+		MyPoint p3 = new MyPoint(1, 1);
 		
-		if (!L12.isCrosses(L34))
-		{
-			return false;
-		}
+		MyLine line12 = new MyLine(p1, p2);
+		MyLine line13 = new MyLine(p1, p3);
+		MyLine line23 = new MyLine(p2, p3);
 		
-		LinearEquation equation = new LinearEquation(L12.getA(), L12.getB(), L12.getC(), L34.getA(), L34.getB(), L34.getC());
-		double x = equation.getX();
-		if (Math.abs(x - p1.getX()) + Math.abs(x - p2.getX()) != Math.abs(p1.getX() - p2.getX()))
-		{
-			return false;
-		}
-		if (Math.abs(x - p3.getX()) + Math.abs(x - p4.getX()) != Math.abs(p3.getX() - p4.getX()))
-		{
-			return false;
-		}
-		return true;
-	}
-	public boolean isCrosses(MyLine otherLine)
-	{
-		LinearEquation equation = new LinearEquation(a, b, c, otherLine.getA(), otherLine.getB(), otherLine.getC());
-		return equation.isSolvable();
-	}
-	
-	public boolean isOverlaps(MyLine otherLine)
-	{
-		return a == otherLine.getA() && b == otherLine.getB() && c == otherLine.getC();
+		System.out.printf("line12 a = %.2f, b = %.2f, c = %.2f\n", line12.getA()
+			, line12.getB(), line12.getC());
+		System.out.printf("line13 a = %.2f, b = %.2f, c = %.2f\n", line13.getA()
+			, line13.getB(), line13.getC());
+		System.out.printf("line23 a = %.2f, b = %.2f, c = %.2f\n", line23.getA()
+			, line23.getB(), line23.getC());
 	}
 }

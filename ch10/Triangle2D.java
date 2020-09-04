@@ -80,6 +80,7 @@ public class Triangle2D
 		}
 		return u + v <= 1;
 	}
+	
 	public boolean contains(MyPoint p1, MyPoint p2)
 	{
 		if (contains(p1) || contains(p2))
@@ -90,12 +91,11 @@ public class Triangle2D
 		MyLine[] lines = new MyLine[3];
 		lines[0] = new MyLine(this.p1, this.p2);
 		lines[1] = new MyLine(this.p1, this.p3);
-		lines[2] = new MyLine(this.p3, this.p3);
-		for (int i = 0; i < lines; i++)
+		lines[2] = new MyLine(this.p2, this.p3);
+		for (int i = 0; i < lines.length; i++)
 		{
-			LinearEquation e = new LinearEquation(lines.getA(), line.getB(), line.getC(), lines[i].getA(), lines[i].getB(), line[i].getC());
-			MyPoint p = new MyPoint(e.getX(), e.getY());
-			if (contains(p))
+			LinearEquation e = new LinearEquation(line.getA(), line.getB(), lines[i].getA(), lines[i].getB(), line.getC(), lines[i].getC());
+			if (e.isSolvable() && contains(new MyPoint(e.getX(), e.getY())))
 			{
 				return true;
 			}
@@ -105,21 +105,33 @@ public class Triangle2D
 	
 	public boolean contains(Triangle2D t)
 	{
-		return contains(t.getP1()) && contains(t.getP2())
-				&& contains(t.getP3());
-	}
-	
-	public boolean crosses(MyPoint p1, MyPoint p2)
-	{
-		return MyLine.isCrosses(p1, p2, this.p1, this.p2)
-			|| MyLine.isCrosses(p1, p2, this.p1, this.p3)
-			|| MyLine.isCrosses(p1, p2, this.p2, this.p3);
+		return contains(t.getP1()) 
+			&& contains(t.getP2())
+			&& contains(t.getP3());
 	}
 	
 	public boolean overlaps(Triangle2D t)
 	{
+		if (this.contains(t) || t.contains(this))
+		{
+			return false;
+		}
+		System.out.println("not contains");
 		return contains(t.getP1(), t.getP2())
 			|| contains(t.getP1(), t.getP3())
 			|| contains(t.getP2(), t.getP3());
+	}
+	
+	public static void main(String[] args)
+	{
+		Triangle2D t1 = new Triangle2D(
+			new MyPoint(0, 0),
+			new MyPoint(2, 0),
+			new MyPoint(1, 2));
+		MyPoint p1 = new MyPoint(0, 1);
+		MyPoint p2 = new MyPoint(2, 1);
+		System.out.println("contains(p1)=" + t1.contains(p1));
+		System.out.println("contains(p2)=" + t1.contains(p2));
+		System.out.println("contains(p1, p2)=" + t1.contains(p1, p2));
 	}
 }

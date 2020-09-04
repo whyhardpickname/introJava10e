@@ -51,27 +51,16 @@ public class LinearEquation
 	
 	public boolean isSolvable()
 	{
-		if ((a * d - b * c) != 0)
-		{
-			return true;
-		}
-		return false;
+		return (a * d - b * c) != 0;
 	}
 	
-	public Double getX()
-	{ 	if (isSolvable())
-		{
-			return (e * d - b * f) /(a * d - b * c);
-		}
-		return Double.NaN;
+	public double getX()
+	{ 	
+		return (e * d - b * f) /(a * d - b * c);
 	}
 	
-	public Double getY()
+	public double getY()
 	{
-		if (isSolvable())
-		{
-			return (a * f - e * c) / (a * d - b * c);
-		}
-		return Double.NaN;
+		return (a * f - e * c) / (a * d - b * c);
 	}
 }
