@@ -16,14 +16,11 @@ public class MyDate
 	
 	public boolean isLeapYear(int year)
 	{
-		if (year % 100 == 0)
+		if (year % 400 == 0 || year % 4 == 0)
 		{
-			return year % 400 == 0;
+			return true;
 		}
-		else
-		{
-			return year % 4 == 0;
-		}
+		return false;
 	}
 	
 	public MyDate(int year, int month, int day)
@@ -50,50 +47,47 @@ public class MyDate
 	
 	public void setDate(long elapsedTime)
 	{
-		long seconds = elapsedTime / 1000;
-		long hours = seconds / 3600;
-		long days = hours / 24;
-		long dayfrom1970 = 0;
+		double seconds = elapsedTime / 1000;
+		double hours = seconds / 3600;
+		double days = hours / 24;
+		double dayfrom1970 = 0;
+		double yearDay = 365;
 		year = 1970;
-		while (days - dayfrom1970 > 355)
+		while (dayfrom1970 + yearDay <= days)
 		{
 			if (isLeapYear(year))
 			{
-				dayfrom1970 += 366;
+				yearDay = 366;
+				dayfrom1970 += yearDay;
 			}
 			else
 			{
-				dayfrom1970 += 355;
+				yearDay = 365;
+				dayfrom1970 += yearDay;
 			}
 			year++;
 		}
-		long dayOfyear = days - dayfrom1970;
+		double dayOfyear = days - dayfrom1970;
+		double monthDay = 0;
 		int[] daysOfmonth = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		if (isLeapYear(year))
 		{
 			daysOfmonth[1]++;
 		}
 		int m = 0;
-		while (dayOfyear - daysOfmonth[m] > 0)
+		while (monthDay + daysOfmonth[m] <= dayOfyear)
 		{
-			dayOfyear -= daysOfmonth[m];
+			monthDay += daysOfmonth[m];
 			m++;
 		}
 		month = m + 1;
-		day = (int) dayOfyear;
+		day = (int) Math.ceil(dayOfyear - monthDay + 1);
 	}
 	
 	public String toString()
 	{
 		return year + "-" 
-			+ (month + 1) + "-"
+			+ month + "-"
 			+ day;
-	}
-	public static void main(String[] args)
-	{
-		MyDate date1 = new MyDate();
-		MyDate date2 = new MyDate(561555550000L);
-		System.out.println(date1.toString());
-		System.out.println(date2.toString());
 	}
 }
