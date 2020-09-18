@@ -1,48 +1,70 @@
 public class Calculator
 {
-	private int ans;
-	
-	public Calculator()
+	public static int infix2postfixExpresion(String s)
 	{
-		ans = 0;
+		String[] infixExpression = s.split("\\s+");
+		StackOfString operators = new StackOfIntegers();
+		StackOfString operands = new StackOfIntegers();
+		for (int i = 0; i < infixExpression.length; i++)
+		{
+			if (isOperand(infixExpression[i]))
+			{
+				operands.push(infixExpression[i]);
+				continue;
+			}
+			while ((operators.getSize() != 0 && operators.peek().compareTo("(") != 0)
+			{
+				if (priority(infixExpression[i], operators.peek()) > 0)
+				{
+					operators.push(infixExpression[i]);
+				}
+				else if ()
+				else
+				{
+					operands.push(operators.pop());
+					break;
+				}
+			}
+		}
+		
+		
 	}
-	
-	public int calculate(String[] reversePolishNotation)
+	public static int calculate(String[] postfixExpression)
 	{
 		StackOfIntegers answer = new StackOfIntegers();
-		for (int i = 0; i < reversePolishNotation.length; i++)
+		for (int i = 0; i < postfixExpression.length; i++)
 		{
-			if (isOperand(reversePolishNotation[i]))
+			if (isOperand(postfixExpression[i]))
 			{
-				answer.push(Integer.parseInt(reversePolishNotation[i]));
+				answer.push(Integer.parseInt(postfixExpression[i]));
 			}
 			else
 			{
-				answer.push(operate(answer.pop(), answer.pop(), reversePolishNotation[i].charAt(0)));
+				answer.push(operate(answer.pop(), answer.pop(), postfixExpression[i]));
 			}
 		}
 		return answer.pop();
 	}
 	
-	public boolean isOperand(String s)
+	public static boolean isOperand(String s)
 	{
 		return Character.isDigit(s.charAt(0));
 	}
 	
-	public int operate(int rightOperand, int leftOperand, char operator)
+	public static int operate(int rightOperand, int leftOperand, String operator)
 	{
 		switch (operator)
 		{
-			case '+':
+			case "+":
 				return leftOperand + rightOperand;
-			case '-':
+			case "-":
 				return leftOperand - rightOperand;
-			case '*':
+			case "*":
 				return leftOperand * rightOperand;
-			case '/':
+			case "/":
 				return leftOperand / rightOperand;
 		}
-		return rightOperand % leftOperand;
+		return leftOperand % rightOperand;
 	}
 	
 	public static void main(String[] args)
