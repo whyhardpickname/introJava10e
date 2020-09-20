@@ -17,6 +17,10 @@ public class StackOfString
 	
 	public String peek()
 	{
+		if (size == 0)
+		{
+			return "";
+		}
 		return elments[size - 1];
 	}
 	
