@@ -59,7 +59,7 @@ public class Exercise09_12
 			e = endpoint[0][0];
 			f = endpoint[2][0];
 		}
-		
+
 		crossPoint = new LinearEquation(a, b, c, d, e, f);
 		if (crossPoint.isSolvable())
 			System.out.println("crossPoint(" + crossPoint.getX() + "," + crossPoint.getY()+ ")");

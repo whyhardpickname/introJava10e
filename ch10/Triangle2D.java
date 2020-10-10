@@ -1,3 +1,4 @@
+package ch10;
 public class Triangle2D
 {
 	private MyPoint p1;

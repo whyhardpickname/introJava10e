@@ -1,3 +1,4 @@
+package ch10;
 public class MyLine
 {
 	//line equation: aX + bY = c

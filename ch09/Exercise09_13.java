@@ -20,8 +20,8 @@ public class Exercise09_13
 			}
 		}
 		
-		System.out.print("The location of largest element is " + Location.locateLargest(a).maxValue 
-			+ "at (" + Location.locateLargest(a).row + ", " +  Location.locateLargest(a).column + ")");
+		System.out.print("The location of largest element is " + Location.locateLargest(a).getMaxValue()
+			+ "at (" + Location.locateLargest(a).getRow() + ", " +  Location.locateLargest(a).getColumn() + ")");
 	}
 }
 
@@ -62,7 +62,7 @@ class Location
 		return column;
 	}
 	
-	public int get MaxValue()
+	public double getMaxValue()
 	{
 		return maxValue;
 	}

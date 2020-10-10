@@ -17,7 +17,7 @@ public class Exercise09_11
 									  coefficients[2], coefficients[3],
 									  coefficients[4], coefficients[5]);
 									  
-		if (twoBytwo.isSovable())
+		if (twoBytwo.isSolvable())
 		{
 			System.out.println("x=" + twoBytwo.getX() + 
 								"Y=" + twoBytwo.getY());
@@ -78,7 +78,7 @@ class LinearEquation
 		return f;
 	}
 	
-	public boolean isSovable()
+	public boolean isSolvable()
 	{
 		if ((a * d - b * c) != 0)
 			return true;

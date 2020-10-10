@@ -2,8 +2,6 @@ public class Exercise10_08
 {
 	public static void main(String[] args)
 	{
-		public static void main(String[] args) 
-	{
 		int[][] bracketsFor2001 = 
 		{
 		  {27050, 65550, 136750, 297350}, // Single filer
@@ -40,6 +38,6 @@ public class Exercise10_08
 			}
 			System.out.println();
 		}
-	}
+
 	}
 }
