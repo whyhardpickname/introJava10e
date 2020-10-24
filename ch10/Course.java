@@ -1,7 +1,10 @@
+import java.util.*;
+
 public class Course
 {
 	private String name;
-	private String[] students = new String[100];
+	private int capacity = 100;
+	private String[] students = new String[capacity];
 	private int numberOfStudents = 0;
 	
 	public Course(String name)
@@ -11,6 +14,11 @@ public class Course
 	
 	public void addStudent(String name)
 	{
+		if (numberOfStudents >= capacity)
+		{
+			capacity = 2 * students.length;
+			students = Arrays.copyOf(students, capacity);
+		}
 		students[numberOfStudents] = name;
 		numberOfStudents++;
 	}
@@ -23,7 +31,7 @@ public class Course
 			{
 				for (int j = i; j + 1 < numberOfStudents; j++)
 				{
-					students[j + 1] = students[j];
+					students[j] = students[j + 1];
 				}
 				numberOfStudents--;
 			}
@@ -46,5 +54,10 @@ public class Course
 	public int getNumberOfStudents()
 	{
 		return numberOfStudents;
+	}
+	
+	public void clear()
+	{
+		numberOfStudents = 0;
 	}
 }
