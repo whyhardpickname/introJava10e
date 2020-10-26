@@ -27,6 +27,11 @@ public class AccountOfArraylist
         this.balance = balance;
     }
 
+    public Date getDateCreated()
+    {
+        return dateCreated;
+    }
+
     public int getId()
     {
         return id;
