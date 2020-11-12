@@ -24,7 +24,7 @@ public class ex7
     {
         if (Character.compare(bit, '0') != 0 && Character.compare(bit, '1') != 0)
         {
-            throw new NumberFormatException("Invalid bit: " + bit);
+            throw new BinaryFormatException("Invalid bit: " + bit);
         }
         return bit - '0';
     }
