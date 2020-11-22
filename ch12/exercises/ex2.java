@@ -1,28 +1,29 @@
 package exercises;
 
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * @author MarkChern
+ * date 2020/11/7 15:46
+ */
 public class ex2
 {
     public static void main(String[] args)
     {
-        boolean isInputOk = false;
-        while (!isInputOk)
+        System.out.print("enter two integers: ");
+        Scanner in = new Scanner(System.in);
+        try
         {
-            try
-            {
-                Scanner in = new Scanner(System.in);
-                int a = in.nextInt();
-                int b = in.nextInt();
-                System.out.println(a + " + " + b + " = " + (a + b));
-            }
-            catch (InputMismatchException e)
-            {
-                System.out.println("wrong input,please enter two integers.");
-                isInputOk = false;
-            }
+            int i = in.nextInt();
+            int j = in.nextInt();
+            System.out.println(i + " + " + j + " = " + (i + j));
         }
-
+        catch (InputMismatchException e)
+        {
+            System.out.print("wrong input");
+            System.out.print("enter two integers: ");
+        }
     }
 }
