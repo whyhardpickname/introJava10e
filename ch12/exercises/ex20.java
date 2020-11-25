@@ -1,14 +1,15 @@
 package exercises;
 
-import java.awt.geom.GeneralPath;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class ex18
+/**
+ * @author MarkChern
+ * date 2020/11/25 17:09
+ */
+public class ex20
 {
     public static void main(String[] args) throws IOException
     {
@@ -19,8 +20,11 @@ public class ex18
             for (File f : d.listFiles())
             {
                 StringBuffer stringBuffer = new StringBuffer();
-                stringBuffer.append("package " + f.getParentFile().getName() + ";\n");
                 Scanner in = new Scanner(f);
+                if (in.hasNext())
+                {
+                    in.nextLine();
+                }
                 while (in.hasNext())
                 {
                     stringBuffer.append(in.nextLine() + "\n");
@@ -30,6 +34,5 @@ public class ex18
                 printWriter.close();
             }
         }
-
     }
 }

@@ -1,3 +1,2 @@
-public static void main(String[]args){
-        
-        }
+package chapter1;
+.\srcRootDirectory\chapter1\c1.java

@@ -1,3 +1,2 @@
-public static void main(String[]args){
-        
-        }
+package chapter2;
+.\srcRootDirectory\chapter2\c2.java
