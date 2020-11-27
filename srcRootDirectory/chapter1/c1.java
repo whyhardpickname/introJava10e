@@ -1,2 +1,2 @@
-package chapter1;
-.\srcRootDirectory\chapter1\c1.java
+package ch1;
+.\srcRootDirectory\ch1\c1.java
