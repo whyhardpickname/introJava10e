@@ -36,9 +36,12 @@ public class ex25
                 index = 2;
             }
             numbers[index] ++;
-            Pattern pattern = Pattern.compile("\\d+");
+            Pattern pattern = Pattern.compile("[0-9]{4,}+");
             Matcher matcher = pattern.matcher(line);
-            totals[index] += Double.parseDouble(matcher.group(1));
+            while (matcher.find())
+            {
+                totals[index] += Double.parseDouble(matcher.group(0));
+            }
         }
 
         for (int i = 0 ; i < numbers.length; i++)

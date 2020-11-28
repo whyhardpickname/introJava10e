@@ -1,2 +1,5 @@
 package ch1;
-.\srcRootDirectory\ch1\c1.java
+package ch1;
+package ch1;
+        Exercise11_02
+        Exercise01_02
