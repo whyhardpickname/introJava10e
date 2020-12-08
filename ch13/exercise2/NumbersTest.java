@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author MarkChern
  * date 2020/12/6 17:13
  */
-public class shuffleTest
+public class NumbersTest
 {
     public static void main(String[] args)
     {
@@ -19,6 +19,8 @@ public class shuffleTest
         list.add(new BigDecimal("1.23454645756879674563543"));
         System.out.println(list.toString());
         Numbers.shuffle(list);
+        System.out.println(list.toString());
+        Numbers.sort(list);
         System.out.println(list.toString());
     }
 }
