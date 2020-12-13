@@ -1,7 +1,6 @@
-package ex14;
+package ex15;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.math.BigInteger;
 
 /**
  * @author MarkChern
@@ -9,53 +8,54 @@ import java.util.Random;
  */
 public class Rational
 {
-    private long[] r = new long[2];
+    private BigInteger numerator;
+    private BigInteger denominator;
 
     public Rational()
     {
-        r[0] = 0;
-        r[1] = 1;
+        numerator = BigInteger.valueOf(0);
+        denominator = BigInteger.valueOf(1);
     }
-    public Rational(long numerator, long denominator)
+    public Rational(BigInteger numerator, BigInteger denominator)
     {
         long gcd = gcd(numerator, denominator);
         r[0] = Math.abs(numerator) / gcd;
         r[1] = Math.abs(denominator / gcd);
     }
 
-    private long gcd(long a, long b)
+    private BigInteger gcd(BigInteger a, BigInteger b)
     {
-        if (a % b == 0)
+        if (a.mod(b).compareTo(BigInteger.valueOf(0)) == 0)
         {
             return b;
         }
-        return gcd(b, a % b);
+        return gcd(b, (a.mod(b));
     }
 
-    public long getNumerator()
+    public BigInteger getNumerator()
     {
-        return r[0];
+        return numerator;
     }
 
-    public void setNumerator(long numerator)
+    public void setNumerator(BigInteger numerator)
     {
-        r[0] = numerator;
+        this.numerator = numerator;
     }
 
-    public long getDenominator()
+    public BigInteger getDenominator()
     {
-        return r[1];
+        return denominator;
     }
 
-    public void setDenominator(long denominator)
+    public void setDenominator(BigInteger denominator)
     {
-        r[1] = denominator;
+        this.denominator = denominator;
     }
 
     public Rational add(Rational other)
     {
-        long denominator = r[1] * other.getDenominator();
-        long numerator = r[0] * other.getDenominator() + r[1] * other.getNumerator();
+        BigInteger denominator = this.denominator.multiply(other.denominator);
+        BigInteger numerator = this.numerator.multiply(other.getDenominator())
         return new Rational(numerator, denominator);
     }
 
