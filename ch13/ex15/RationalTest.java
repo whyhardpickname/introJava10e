@@ -1,6 +1,6 @@
 package ex15;
 
-import ex14.Rational;
+import java.math.BigInteger;
 
 /**
  * @author MarkChern
@@ -10,9 +10,8 @@ public class RationalTest
 {
     public static void main(String[] args)
     {
-        ex14.Rational r1 = new ex14.Rational(1, 2);
-        ex14.Rational r2 = new Rational(1, 3);
-
+        Rational r1 = new Rational(BigInteger.valueOf(1), new BigInteger("2000000000000000000"));
+        Rational r2 = new Rational(BigInteger.valueOf(1), new BigInteger("3000000000000000000"));
         System.out.println(r1);
         System.out.println(r2);
         System.out.println(r1.add(r2));

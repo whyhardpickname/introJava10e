@@ -18,9 +18,9 @@ public class Rational
     }
     public Rational(BigInteger numerator, BigInteger denominator)
     {
-        long gcd = gcd(numerator, denominator);
-        r[0] = Math.abs(numerator) / gcd;
-        r[1] = Math.abs(denominator / gcd);
+        BigInteger gcd = gcd(numerator, denominator);
+        this.numerator = numerator.abs().divide(gcd);
+        this.denominator = denominator.divide(gcd).abs();
     }
 
     private BigInteger gcd(BigInteger a, BigInteger b)
@@ -29,7 +29,7 @@ public class Rational
         {
             return b;
         }
-        return gcd(b, (a.mod(b));
+        return gcd(b, a.mod(b));
     }
 
     public BigInteger getNumerator()
@@ -55,28 +55,30 @@ public class Rational
     public Rational add(Rational other)
     {
         BigInteger denominator = this.denominator.multiply(other.denominator);
-        BigInteger numerator = this.numerator.multiply(other.getDenominator())
+        BigInteger numerator = this.numerator.multiply(other.getDenominator()).add(
+                this.denominator.multiply(other.getNumerator()));
         return new Rational(numerator, denominator);
     }
 
     public Rational subtract(Rational other)
     {
-        long denominator = r[1] * other.getDenominator();
-        long numerator = r[0] * other.getDenominator() - r[1] * other.getNumerator();
+        BigInteger denominator = this.denominator.multiply(other.getDenominator());
+        BigInteger numerator = this.numerator.multiply(other.getDenominator()).subtract(
+                this.denominator.multiply(other.getNumerator()));
         return new Rational(numerator, denominator);
     }
 
     public Rational multiply(Rational other)
     {
-        long denominator = r[1] * other.getDenominator();
-        long numerator = r[0] * other.getNumerator();
+        BigInteger denominator = this.denominator.multiply(other.getDenominator());
+        BigInteger numerator = this.numerator.multiply(other.getNumerator());
         return new Rational(numerator, denominator);
     }
 
     public Rational divide(Rational other)
     {
-        long denominator = r[1] * other.getNumerator();
-        long numerator = r[0] * other.getDenominator();
+        BigInteger denominator = this.denominator.multiply(other.getNumerator());
+        BigInteger numerator = this.numerator.multiply(other.getDenominator());
         return new Rational(numerator, denominator);
     }
 
@@ -84,8 +86,8 @@ public class Rational
     public String toString()
     {
         return "Rational{" +
-                "Numerator=" + r[0] + " " +
-                "Denominator=" + r[1] +
+                "Numerator=" + getNumerator() + " " +
+                "Denominator=" + getDenominator() +
                 '}';
     }
 }
