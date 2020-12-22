@@ -9,15 +9,12 @@ import java.util.Scanner;
  */
 public class DecimalToFraction
 {
-    public static void main(String[] args)
+    public static Rational decimalToFraction(double f)
     {
-        Scanner input = new Scanner(System.in);
-        System.out.print("enter a decimal number: ");
-        String[] elements = input.next().split("\\.");
+        String[] elements = Double.valueOf(f).toString().split("\\.");
         BigInteger numerator = new BigInteger(elements[1]);
         BigInteger denominator = BigInteger.TEN.pow(elements[1].length());
         numerator = numerator.add(denominator.multiply(new BigInteger(elements[0])));
-        System.out.println(new Rational(numerator, denominator));
-
+        return new Rational(numerator, denominator);
     }
 }
