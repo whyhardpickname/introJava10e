@@ -6,8 +6,7 @@ import javax.xml.transform.Source;
 import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLOutput;
-//TODO
-// - 测试
+
 /**
  * 地址簿，可以添加，删除，更新地址。查看功能有首页，前移，后移和末页。
  * 地址由姓名，街道，城市，州和邮政编码组成。它们都是字符串，长度分别为
@@ -77,8 +76,9 @@ public class ex9
     /** 打印末尾地址 */
     public void last() throws IOException
     {
-        if (addresses.length() - RECORD_SIZE >= 0)
+        if (addresses.length() - 2 * RECORD_SIZE >= 0)
         {
+            //一个字符两个字节
             System.out.println(readAddress(addresses.length() - 2 * RECORD_SIZE));
         }
         else
@@ -90,9 +90,10 @@ public class ex9
     /** 下一个地址 */
     public void next() throws IOException
     {
-        if (addresses.getFilePointer() < addresses.length())
+        long position = addresses.getFilePointer();
+        if (position < addresses.length())
         {
-            System.out.println(readAddress(addresses.getFilePointer()));
+            System.out.println(readAddress(position));
         }
         else
         {
@@ -105,7 +106,8 @@ public class ex9
     {
         if (addresses.getFilePointer() - 2 * RECORD_SIZE >= 0)
         {
-            System.out.println(readAddress(addresses.getFilePointer() - 2 * RECORD_SIZE));
+            //2 * 2 * RECORD_SIZE因为指针位于当前地址末尾。
+            System.out.println(readAddress(addresses.getFilePointer() - 2 * 2 * RECORD_SIZE));
         }
         else
         {
@@ -119,14 +121,13 @@ public class ex9
         String s = "1";
         addresses.writeAddress(0, new Address(s, s, s, s, s));
         s = "2";
-        addresses.writeAddress(RECORD_SIZE, new Address(s, s, s, s, s));
-        s = "3";
         addresses.writeAddress(2 * RECORD_SIZE, new Address(s, s, s, s, s));
+        s = "3";
+        addresses.writeAddress(2 * 2 * RECORD_SIZE, new Address(s, s, s, s, s));
 
         addresses.first();
         addresses.next();
-        addresses.next();
-        addresses.next();
+        addresses.previous();
     }
 }
 
